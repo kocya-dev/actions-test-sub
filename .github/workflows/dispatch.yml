@@ -7,13 +7,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-#      - name: Generate GitHub Apps token
-#        id: generate
-#        uses: tibdex/github-app-token@v1
-#        with:
-#          app_id: ${{ secrets.APP_ID }}
-#          private_key: ${{ secrets.PRIVATE_KEY }}
+      - name: Generate GitHub Apps token
+        id: generate
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
       - name: notify
         run: |
-          curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -d '{"event_type": "update-test"}' -i  https://api.github.com/repos/kocya-dev/actions-test-main/dispatches
-          #curl -X POST -H "Authorization: token ${{ steps.generate.outputs.token }}" -H "Accept: application/vnd.github.everest-preview+json" -d '{"event_type": "update-test"}' -i  https://api.github.com/repos/kocya-dev/actions-test-main/dispatches
+          curl -X POST -H "Authorization: token ${{ steps.generate.outputs.token }}" -H "Accept: application/vnd.github.everest-preview+json" -d '{"event_type": "update-test"}' -i  https://api.github.com/repos/kocya-dev/actions-test-main/dispatches
